@@ -35,7 +35,7 @@ pipeline {
       steps {
         withMaven(maven: env.TLS_MAVEN, jdk: env.TLS_JAVA, mavenSettingsConfig: env.MVN_SETTINGS, globalMavenSettingsConfig: env.MVN_GLOBAL_SETTINGS, publisherStrategy: 'IMPLICIT') {
           sh '''
-            mvn -fae clean package $MVN_BUILD_OPTS
+            mvn install
           '''
         }
       }
