@@ -3,8 +3,8 @@ pipeline {
   agent any 
   
    environment{
-     JAVA_HOME = 'JAVA_HOME'
-	 M2_HOME   = 'M2_HOME'
+     TLS_JAVA = 'JAVA8'
+     TLS_MAVEN = 'MAVEN3'
   }
 
   
@@ -30,13 +30,14 @@ pipeline {
 
     stage('Prepare JBoss configuration') {
       steps {
+	  withMaven(maven: env.TLS_MAVEN, jdk: env.TLS_JAVA) {
         
           sh '''
 		    cd my-app
             mvn package
             java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
           '''
-        
+        }
       }
     }
 
