@@ -27,7 +27,9 @@ pipeline {
       steps {
         
           sh '''
-            mvn install
+		    cd my-app
+            mvn package
+            java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
           '''
         
       }
