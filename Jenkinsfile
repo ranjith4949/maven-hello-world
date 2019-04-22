@@ -1,6 +1,8 @@
 pipeline {
 
-  agent any {
+  agent any 
+  
+   environment{
      JAVA_HOME = env.JAVA_HOME
 	 M2_HOME   = env.M2_HOME
   }
