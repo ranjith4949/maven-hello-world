@@ -2,15 +2,7 @@ pipeline {
 
   agent any
 
-  environment {
-
-    GIT_CREDENTIALS = 'GIT_CREDENTIALS'
-    MVN_BUILD_OPTS = ''
-    MVN_GLOBAL_SETTINGS = 'MVN_GLOBAL_SETTINGS'
-    MVN_SETTINGS = 'MVN_SETTINGS'
-    TLS_JAVA = 'JAVA8'
-    TLS_MAVEN = 'MAVEN3'
-  }
+  
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
@@ -33,7 +25,7 @@ pipeline {
 
     stage('Prepare JBoss configuration') {
       steps {
-        withMaven(maven: env.TLS_MAVEN, jdk: env.TLS_JAVA, mavenSettingsConfig: env.MVN_SETTINGS, globalMavenSettingsConfig: env.MVN_GLOBAL_SETTINGS, publisherStrategy: 'IMPLICIT') {
+        //withMaven(maven: env.TLS_MAVEN, jdk: env.TLS_JAVA, mavenSettingsConfig: env.MVN_SETTINGS, globalMavenSettingsConfig: env.MVN_GLOBAL_SETTINGS, publisherStrategy: 'IMPLICIT') {
           sh '''
             mvn install
           '''
